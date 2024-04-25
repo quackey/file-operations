@@ -5,7 +5,7 @@
 
 ### Requirements
 
-1. Rclone installed, configured, google drive mounted as gdrive
+1. Rclone installed, configured, Google Drive mounted as gdrive:
    
    `sudo -v ; curl https://rclone.org/install.sh | sudo bash`
    
