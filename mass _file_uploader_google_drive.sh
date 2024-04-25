@@ -7,7 +7,7 @@ chars="'$'\r'" #junk chars
 for int in {1..500} 
 do
   ip=$(sed -n '1p' "$input" | sed "s/[$chars]//g") #reading the first line of it input list
-  op=$(sed -n '1p' "$output" | sed "s/[$chars]//g") #reading the first line of it onput list
+  op=$(sed -n '1p' "$output" | sed "s/[$chars]//g") #reading the first line of it output list
   rclone copy "$ip" "$op" #uploads file to Google Drive
   echo "$int" "$ip" "$op" #verbose
   sudo echo "$ip" >> $log #log
