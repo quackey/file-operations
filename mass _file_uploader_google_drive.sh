@@ -1,16 +1,19 @@
 #!/bin/bash
-input="/mnt/src/list_src.txt" #path to the list of files to upload (.txt)
-log="/mnt/src/test.txt" #path to the log file
-output="/mnt/src/list_dest.txt" #path to the dest list, same as src
-declare -i int=1
-chars="'$'\r'" #junk chars
-for int in {1..500} 
+int=1
+input="/mnt/src/list_src.txt"
+log="/mnt/src/test.txt"
+output="/mnt/src/list_dest.txt"
+chars="'$'\r'"
+len=($(wc "$input"))
+echo "Lines in input file: $len" 
+for int in $(seq 1 $len)
 do
-  ip=$(sed -n '1p' "$input" | sed "s/[$chars]//g") #reading the first line of it input list
-  op=$(sed -n '1p' "$output" | sed "s/[$chars]//g") #reading the first line of it output list
-  rclone copy "$ip" "$op" #uploads file to Google Drive
-  echo "$int" "$ip" "$op" #verbose
-  sudo echo "$ip" >> $log #log
-  sudo sed -i '1d' "$input" #delete the first line of the lists
+  ip=$(sed -n '1p' "$input" | sed "s/[$chars]//g")
+  op=$(sed -n '1p' "$output" | sed "s/[$chars]//g")
+  echo -n "$int Uploading $ip to $op ...  "
+  rclone copy "$ip" "$op"
+  sudo echo "$ip" >> $log
+  echo "SUCCESS!"
+  sudo sed -i '1d' "$input"
   sudo sed -i '1d' "$output"
 done < "$input" 2< "$output"
