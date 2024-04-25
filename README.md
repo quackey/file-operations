@@ -17,19 +17,19 @@
    
 3. Format your lists:
    
-   -list_src.txt:
+   - list_src.txt:
    
    `/mnt/src/yourfilehere.ext`
    
    `/mnt/src/yourotherfile.ext`
    
-   -list_dest.txt:
+   + list_dest.txt:
    
    `gdrive:/path/to/the/folder/in/google/drive/`
    
-   Destination doesn't need filenames.
+   Destination doesn't need filename.
    
-###Run
+### Run
 
 `git clone https://github.com/quackey/file-operations`
 
